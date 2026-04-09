@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <main class="container">
+    <div class="wordmark-row">
+      <span class="wordmark">Niruktham</span>
+      <span class="devanagari">निरुक्तम्</span>
+    </div>
+
+    <div class="grid">
+      <div class="text-column">
+        <h1>Breaking down ServiceNow, one hard part at a time.</h1>
+
+        <p>Around 2,500 years ago, a scholar named Yaska noticed that people could no longer read the oldest hymns of the Vedas. Words had fallen out of use. Entire meanings were lost. So he did something quietly radical: he wrote a book that took each difficult word apart, traced it back to its root, and reasoned out what it must have meant. He called the method <em>nirukta</em> — "the explained."</p>
+
+        <p><em>Niruktham</em>, the word, comes from southern India. It's also, I think, a decent description of what good technical writing should do: take something hard, find the root, show the parts, make it make sense.</p>
+
+        <p>Over time this site will grow into three things:</p>
+
+        <ul class="feature-list">
+          <li><strong>Solutions I'm building</strong> — integrations and tools on the Now Platform, each tied to its GitHub repo.</li>
+          <li><strong>Work I've done</strong> — implementation stories from client projects, anonymized where needed.</li>
+          <li><strong>Notes from LinkedIn</strong> — daily posts on the ServiceNow REST API, mirrored here as they go live.</li>
+        </ul>
+
+        <p class="small-note">It's early days — most of that content doesn't exist yet. While the site fills out, LinkedIn is the best place to find me.</p>
+
+        <nav class="links-row">
+          <a href="https://www.linkedin.com/in/vasareen/" target="_blank" rel="noopener noreferrer" class="link-primary">LinkedIn →</a>
+          <a href="https://www.linkedin.com/in/vasareen/" target="_blank" rel="noopener noreferrer" class="link-secondary">Contact</a>
+        </nav>
+      </div>
+
+      <div class="svg-column">
+        <svg viewBox="0 0 180 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An etymology tree — a root with branches reaching down and outward, and a single green leaf sprouting from the top." style="width: 100%; height: auto; max-width: 220px;">
+          <path d="M 90 72 Q 58 48 88 4 Q 90 2 92 4 Q 122 48 90 72 Z" fill="#8ab068" stroke="#4a6a2a" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="90" y1="8" x2="90" y2="70" stroke="#4a6a2a" stroke-width="1"/>
+          <path d="M 90 22 Q 82 26 72 36" fill="none" stroke="#4a6a2a" stroke-width="0.8"/>
+          <path d="M 90 22 Q 98 26 108 36" fill="none" stroke="#4a6a2a" stroke-width="0.8"/>
+          <path d="M 90 38 Q 78 42 68 54" fill="none" stroke="#4a6a2a" stroke-width="0.8"/>
+          <path d="M 90 38 Q 102 42 112 54" fill="none" stroke="#4a6a2a" stroke-width="0.8"/>
+          <path d="M 90 54 Q 84 58 78 66" fill="none" stroke="#4a6a2a" stroke-width="0.8"/>
+          <path d="M 90 54 Q 96 58 102 66" fill="none" stroke="#4a6a2a" stroke-width="0.8"/>
+          <line x1="90" y1="72" x2="90" y2="90" stroke="#5a7a3a" stroke-width="1.5"/>
+          <g fill="none" stroke="#d4a574" stroke-width="1" stroke-linecap="round">
+            <line x1="90" y1="90" x2="90" y2="250"/>
+            <path d="M 90 130 Q 60 140 40 170"/>
+            <path d="M 90 130 Q 120 140 140 170"/>
+            <path d="M 90 160 Q 55 170 30 200"/>
+            <path d="M 90 160 Q 125 170 150 200"/>
+            <path d="M 90 190 Q 65 200 50 230"/>
+            <path d="M 90 190 Q 115 200 130 230"/>
+            <path d="M 90 220 Q 75 230 70 250"/>
+            <path d="M 90 220 Q 105 230 110 250"/>
+          </g>
+          <g fill="#d4a574">
+            <circle cx="90" cy="90" r="3"/>
+            <circle cx="40" cy="170" r="2"/>
+            <circle cx="140" cy="170" r="2"/>
+            <circle cx="30" cy="200" r="2"/>
+            <circle cx="150" cy="200" r="2"/>
+            <circle cx="50" cy="230" r="2"/>
+            <circle cx="130" cy="230" r="2"/>
+            <circle cx="70" cy="250" r="2"/>
+            <circle cx="110" cy="250" r="2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 44px;
+  }
+
+  .wordmark-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+
+  .wordmark {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: #fafafa;
+  }
+
+  .devanagari {
+    font-family: 'Noto Sans Devanagari', serif;
+    font-size: 20px;
+    color: #d4a574;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    color: #fafafa;
+    margin-bottom: 28px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+  }
+
+  em {
+    color: #c4b890;
+    font-style: italic;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .feature-list li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #a0a0a0;
+    margin-bottom: 10px;
+  }
+
+  .feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 6px;
+    height: 1px;
+    background: #d4a574;
+  }
+
+  .feature-list li strong {
+    color: #e6e6e6;
+    font-weight: 500;
+  }
+
+  .small-note {
+    font-size: 13px;
+    color: #6a6a6a;
+  }
+
+  .links-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+  }
+
+  .link-primary {
+    font-size: 13px;
+    color: #d4a574;
+    text-decoration: none;
+    border-bottom: 0.5px solid #d4a574;
+    padding-bottom: 2px;
+  }
+
+  .link-primary:hover {
+    opacity: 0.8;
+  }
+
+  .link-secondary {
+    font-size: 13px;
+    color: #a0a0a0;
+    text-decoration: none;
+  }
+
+  .link-secondary:hover {
+    opacity: 0.8;
+  }
+
+  .svg-column {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      padding: 40px 24px;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    .feature-list li {
+      font-size: 14px;
+    }
+
+    .svg-column {
+      order: 2;
+      justify-self: center;
+      margin-top: 32px;
+      max-width: 200px;
+    }
+  }
+</style>
