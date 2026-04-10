@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { getCollection, render } from 'astro:content';
+import { postSlug } from '../../utils/slug';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: postSlug(post.id) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const currentIndex = allPosts.findIndex(p => p.id === post.id);
+const prev = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+const next = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+---
+
+<BaseLayout title={`${post.data.title} — Niruktham`} description={post.data.excerpt}>
+  <SiteHeader />
+  <main class="container">
+    <div class="inner">
+      <a href="/posts/" class="back-link">&larr; All posts</a>
+
+      <span class="category-tag">{post.data.category}</span>
+      <p class="post-date">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      <h1>{post.data.title}</h1>
+
+      <div class="post-body">
+        <Content />
+      </div>
+
+      <div class="post-footer">
+      <div class="footer-left">
+        {post.data.linkedinUrl ? (
+          <a href={post.data.linkedinUrl} target="_blank" rel="noopener noreferrer" class="linkedin-link">Read on LinkedIn &#8599;</a>
+        ) : (
+          <span></span>
+        )}
+      </div>
+      <div class="footer-nav">
+        {prev && (
+          <a href={`/posts/${postSlug(prev.id)}/`} class="footer-nav-link">
+            <span class="nav-label">&larr; Previous</span>
+            <span class="nav-title">{prev.data.title}</span>
+          </a>
+        )}
+        {next && (
+          <a href={`/posts/${postSlug(next.id)}/`} class="footer-nav-link nav-next">
+            <span class="nav-label">Next &rarr;</span>
+            <span class="nav-title">{next.data.title}</span>
+          </a>
+        )}
+        </div>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 44px;
+  }
+
+  .inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .back-link {
+    font-size: 14px;
+    color: #a0a0a0;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+
+  .back-link:hover {
+    color: #d4a574;
+  }
+
+  .category-tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 8px;
+    background: #1a1a1a;
+    color: #d4a574;
+    border: 0.5px solid #2a2a2a;
+    border-radius: 3px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .post-date {
+    font-size: 14px;
+    color: #6a6a6a;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 500;
+    color: #fafafa;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+  }
+
+  .post-body :global(p) {
+    font-size: 18px;
+    line-height: 1.75;
+    color: #c4c0b8;
+    margin: 0 0 18px;
+  }
+
+  .post-body :global(code) {
+    font-family: 'SF Mono', Monaco, 'Cascadia Mono', monospace;
+    font-size: 14px;
+    background: #1a1a1a;
+    color: #d4a574;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .post-body :global(a) {
+    color: #d4a574;
+    border-bottom: 0.5px solid #d4a574;
+    padding-bottom: 1px;
+    text-decoration: none;
+  }
+
+  .post-body :global(strong) {
+    color: #fafafa;
+    font-weight: 500;
+  }
+
+  .post-body :global(em) {
+    color: #c4b890;
+    font-style: italic;
+  }
+
+  .post-footer {
+    border-top: 0.5px solid #2a2a2a;
+    margin-top: 48px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    flex-shrink: 0;
+  }
+
+  .linkedin-link {
+    font-size: 14px;
+    color: #d4a574;
+    border-bottom: 0.5px solid #d4a574;
+    padding-bottom: 1px;
+    text-decoration: none;
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-nav-link {
+    text-decoration: none;
+    display: block;
+  }
+
+  .footer-nav-link:hover .nav-label,
+  .footer-nav-link:hover .nav-title {
+    color: #d4a574;
+  }
+
+  .nav-label {
+    font-size: 13px;
+    color: #6a6a6a;
+    display: block;
+  }
+
+  .nav-title {
+    font-size: 15px;
+    color: #a0a0a0;
+    display: block;
+  }
+
+  .nav-next {
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+  }
+</style>
