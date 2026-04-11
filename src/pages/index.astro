@@ -51,11 +51,6 @@ const latestPosts = (await getCollection('posts'))
             })}
             <a href="/posts/" class="all-posts-link">All posts &rarr;</a>
           </section>
-
-          <nav class="links-row">
-            <a href="https://www.linkedin.com/in/vasareen/" target="_blank" rel="noopener noreferrer" class="link-primary">LinkedIn →</a>
-            <a href="https://www.linkedin.com/in/vasareen/" target="_blank" rel="noopener noreferrer" class="link-secondary">Contact</a>
-          </nav>
         </div>
 
         <div class="svg-column">
@@ -254,41 +249,13 @@ const latestPosts = (await getCollection('posts'))
   }
 
   .all-posts-link {
-    font-size: 14px;
+    font-size: 15px;
     color: #d4a574;
     border-bottom: 0.5px solid #d4a574;
     padding-bottom: 1px;
     text-decoration: none;
     display: inline-block;
     margin-top: 12px;
-  }
-
-  .links-row {
-    display: flex;
-    gap: 24px;
-    margin-top: 20px;
-  }
-
-  .link-primary {
-    font-size: 15px;
-    color: #d4a574;
-    text-decoration: none;
-    border-bottom: 0.5px solid #d4a574;
-    padding-bottom: 2px;
-  }
-
-  .link-primary:hover {
-    opacity: 0.8;
-  }
-
-  .link-secondary {
-    font-size: 15px;
-    color: #a0a0a0;
-    text-decoration: none;
-  }
-
-  .link-secondary:hover {
-    opacity: 0.8;
   }
 
   .svg-column {

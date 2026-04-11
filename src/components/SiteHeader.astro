@@ -1,4 +1,18 @@
 ---
+const pathname = Astro.url.pathname;
+
+const navItems = [
+  { href: '/posts/', label: 'Blog', muted: false },
+  { href: '/coming-soon/', label: 'Solutions', muted: true },
+  { href: '/coming-soon/', label: 'About', muted: true },
+];
+
+const isActive = (href: string) => {
+  if (href === '/posts/') {
+    return pathname === '/posts' || pathname === '/posts/' || pathname.startsWith('/posts/');
+  }
+  return pathname === href || pathname === href.replace(/\/$/, '');
+};
 ---
 
 <header class="site-header">
@@ -20,10 +34,17 @@
       <span class="brand-dev">निरुक्तम्</span>
     </a>
     <nav class="site-nav">
-      <a href="/posts/" class="nav-link">Writing</a>
-      <a href="/coming-soon/" class="nav-link nav-link-muted">Solutions</a>
-      <a href="/coming-soon/" class="nav-link nav-link-muted">Work</a>
-      <a href="https://www.linkedin.com/in/vasareen/" target="_blank" rel="noopener noreferrer" class="nav-link">Contact</a>
+      {navItems.map((item) => {
+        const active = !item.muted && isActive(item.href);
+        const classes = [
+          'nav-link',
+          item.muted ? 'nav-link-muted' : '',
+          active ? 'nav-link-active' : '',
+        ].filter(Boolean).join(' ');
+        return (
+          <a href={item.href} class={classes} aria-current={active ? 'page' : undefined}>{item.label}</a>
+        );
+      })}
     </nav>
   </div>
 </header>
@@ -82,10 +103,14 @@
     font-size: 15px;
     color: #a0a0a0;
     text-decoration: none;
-    transition: color 0.15s;
+    transition: color 0.15s ease;
   }
 
   .nav-link:hover {
+    color: #fafafa;
+  }
+
+  .nav-link-active {
     color: #fafafa;
   }
 
