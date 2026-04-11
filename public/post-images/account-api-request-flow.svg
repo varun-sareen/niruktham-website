@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380">
+  <rect width="720" height="380" fill="#0a0a0a"/>
+
+  <!-- Title -->
+  <text x="360" y="32" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#fafafa">Account API — request/response</text>
+
+  <!-- Client box -->
+  <rect x="40" y="70" width="180" height="60" rx="6" fill="none" stroke="#d4a574" stroke-width="1.5"/>
+  <text x="130" y="97" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#fafafa">Client</text>
+  <text x="130" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#a0a0a0">curl / integration / script</text>
+
+  <!-- Arrow: client to ServiceNow -->
+  <line x1="220" y1="90" x2="460" y2="90" stroke="#d4a574" stroke-width="1.5"/>
+  <polygon points="460,85 472,90 460,95" fill="#d4a574"/>
+
+  <!-- Request label block -->
+  <text x="340" y="72" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#d4a574">GET /api/now/account</text>
+  <text x="340" y="118" text-anchor="middle" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">Accept: application/json</text>
+  <text x="340" y="132" text-anchor="middle" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">Authorization: Basic ****</text>
+
+  <!-- ServiceNow box -->
+  <rect x="480" y="70" width="200" height="60" rx="6" fill="none" stroke="#d4a574" stroke-width="1.5"/>
+  <text x="580" y="97" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="500" fill="#fafafa">ServiceNow</text>
+  <text x="580" y="116" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#a0a0a0">customer_account table</text>
+
+  <!-- Arrow: ServiceNow back to client -->
+  <line x1="480" y1="100" x2="222" y2="100" stroke="#8ab068" stroke-width="1.5"/>
+  <polygon points="222,95 210,100 222,105" fill="#8ab068"/>
+
+  <!-- Query params box -->
+  <rect x="40" y="165" width="300" height="90" rx="6" fill="none" stroke="#a0a0a0" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="55" y="185" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#fafafa">Query parameters</text>
+  <text x="55" y="204" font-family="Inter, monospace" font-size="10" fill="#d4a574">sysparm_limit</text>
+  <text x="185" y="204" font-family="Inter, sans-serif" font-size="10" fill="#a0a0a0">default: 10 (not 100)</text>
+  <text x="55" y="220" font-family="Inter, monospace" font-size="10" fill="#d4a574">sysparm_offset</text>
+  <text x="195" y="220" font-family="Inter, sans-serif" font-size="10" fill="#a0a0a0">default: 0</text>
+  <text x="55" y="236" font-family="Inter, monospace" font-size="10" fill="#d4a574">sysparm_query</text>
+  <text x="185" y="236" font-family="Inter, sans-serif" font-size="10" fill="#a0a0a0">encoded query filter</text>
+
+  <!-- Response body box -->
+  <rect x="380" y="165" width="300" height="190" rx="6" fill="none" stroke="#8ab068" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="395" y="185" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#fafafa">Response (200 OK)</text>
+  <text x="395" y="208" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">{</text>
+  <text x="410" y="224" font-family="Inter, monospace" font-size="10" fill="#fafafa">"result": [</text>
+  <text x="425" y="240" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">{ "name": "Boxeo EMEA",</text>
+  <text x="432" y="254" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">"number": "ACCT0000003",</text>
+  <text x="432" y="268" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">"customer": "true",</text>
+  <text x="432" y="282" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">"sys_id": "3eedd084..." }</text>
+  <text x="410" y="298" font-family="Inter, monospace" font-size="10" fill="#fafafa">],</text>
+  <text x="410" y="314" font-family="Inter, monospace" font-size="10" fill="#d4a574">"hasMore": true</text>
+  <text x="395" y="330" font-family="Inter, monospace" font-size="10" fill="#a0a0a0">}</text>
+
+  <!-- Role callout -->
+  <rect x="40" y="280" width="300" height="42" rx="6" fill="none" stroke="#a0604a" stroke-width="1"/>
+  <text x="55" y="299" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#a0604a">Required</text>
+  <text x="55" y="314" font-family="Inter, sans-serif" font-size="10" fill="#a0a0a0">Plugin: com.sn_customerservice  Role: csm_ws_integration</text>
+
+  <!-- Legend -->
+  <line x1="40" y1="360" x2="60" y2="360" stroke="#d4a574" stroke-width="1.5"/>
+  <text x="66" y="364" font-family="Inter, sans-serif" font-size="10" fill="#a0a0a0">request</text>
+  <line x1="120" y1="360" x2="140" y2="360" stroke="#8ab068" stroke-width="1.5"/>
+  <text x="146" y="364" font-family="Inter, sans-serif" font-size="10" fill="#a0a0a0">response</text>
+  <line x1="200" y1="360" x2="220" y2="360" stroke="#a0604a" stroke-width="1.5"/>
+  <text x="226" y="364" font-family="Inter, sans-serif" font-size="10" fill="#a0a0a0">prerequisite</text>
+</svg>
