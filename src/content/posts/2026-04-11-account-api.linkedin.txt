@@ -1,0 +1,90 @@
+IMAGES:
+public/post-images/account-api-request-flow.svg
+public/post-images/account-api-pagination-loop.svg
+src/content/posts/2026-04-11-account-api.curl.sh
+
+---
+
+ServiceNow REST API Series - Post #01
+
+
+Default limit on the Account API is 10.
+Not 100. Not "unlimited with paging." Ten.
+
+If your integration is silently returning
+partial data, this is probably why.
+
+
+𝐖𝐡𝐚𝐭 𝐢𝐭 𝐝𝐨𝐞𝐬
+
+The Account API is a stripped-down Table
+API for CSM accounts, exposing the
+customer_account table.
+
+GET /api/now/account — list accounts.
+GET /api/now/account/{id} — one by sys_id.
+
+Two read-only endpoints. No POST, PUT,
+or DELETE.
+
+
+𝐅𝐢𝐯𝐞 𝐠𝐨𝐭𝐜𝐡𝐚𝐬
+
+→ 𝐃𝐞𝐟𝐚𝐮𝐥𝐭 𝐥𝐢𝐦𝐢𝐭 𝐢𝐬 𝟏𝟎, 𝐧𝐨𝐭 𝟏𝟎𝟎. The
+Table API defaults sysparm_limit from
+glide.rest.max_result_count. The Account
+API hardcodes 10. Skip setting it
+explicitly and your integration silently
+returns partial data.
+
+→ 𝐑𝐞𝐚𝐝-𝐨𝐧𝐥𝐲. No create, update, or
+delete. Need to write account records?
+Use the Table API against customer_account
+directly.
+
+→ 𝐓𝐡𝐞 𝟒𝟎𝟒 𝐬𝐚𝐲𝐬 "𝐜𝐚𝐬𝐞" 𝐧𝐨𝐭 "𝐚𝐜𝐜𝐨𝐮𝐧𝐭."
+Copy-paste from the Case API docs. The
+endpoint works — the message is wrong.
+
+→ 𝐁𝐨𝐭𝐡 𝐜𝐮𝐬𝐭𝐨𝐦𝐞𝐫 𝐚𝐧𝐝 𝐩𝐚𝐫𝐭𝐧𝐞𝐫 𝐝𝐞𝐟𝐚𝐮𝐥𝐭 𝐭𝐨
+𝐟𝐚𝐥𝐬𝐞. A new account with no flags set
+is neither. Filter logic that assumes
+one or the other will miss these records.
+
+→ 𝐍𝐨 𝐩𝐥𝐮𝐠𝐢𝐧, 𝐧𝐨 𝐞𝐧𝐝𝐩𝐨𝐢𝐧𝐭. Requires
+com.sn_customerservice plus the
+csm_ws_integration role. Without CSM,
+the endpoint returns 404 with no useful
+error. Verify before building.
+
+
+𝐖𝐡𝐞𝐧 𝐭𝐨 𝐮𝐬𝐞 𝐢𝐭
+
+Read-only CSM integrations — portals,
+dashboards, BI tools pulling account
+metadata. Cleaner response shape than
+raw Table API on customer_account.
+
+
+𝐖𝐡𝐞𝐧 𝐧𝐨𝐭 𝐭𝐨 𝐮𝐬𝐞 𝐢𝐭
+
+When you need writes, when CSM isn't
+installed, or when you need dot-walked
+fields from related tables in one call.
+
+
+Full write-up with deeper context:
+niruktham.com/posts/account-api
+
+Next in the series: ActivitySubscriptions
+API — the notification system most teams
+don't know exists.
+
+What's bitten you on this API?
+Drop it in the comments — I'm collecting
+gotchas for the series.
+
+
+#ServiceNow #RESTAPI #Integration #ServiceNowDev #Niruktham
+
+@ServiceNow @ServiceNow Community @SolvVision @ServiceNow Partners
