@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+
+<BaseLayout title="Work Experience — Niruktham" description="Client-by-client ServiceNow work history. Under construction.">
+  <SiteHeader />
+  <div class="page-wrap">
+    <main class="container">
+      <a href="/about/roots/" class="back-link">&larr; Back to Roots</a>
+      <h1>Under construction</h1>
+      <p class="lede">The full client-by-client work history is being written up properly — anonymised by industry and structured to be useful before a discovery call. Check back soon.</p>
+
+      <section class="already">
+        <p class="already-label">What's already here</p>
+        <a href="/about/roots/" class="feature-link">About / Roots &rarr;</a>
+        <a href="/posts/" class="feature-link">Blog &rarr;</a>
+        <a href="https://www.linkedin.com/in/vasareen/" target="_blank" rel="noopener noreferrer" class="feature-link">About me on LinkedIn &#8599;</a>
+      </section>
+    </main>
+  </div>
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .page-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 44px;
+  }
+
+  .back-link {
+    font-size: 14px;
+    color: #a0a0a0;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+
+  .back-link:hover {
+    color: #d4a574;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #fafafa;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+  }
+
+  .lede {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #a0a0a0;
+    margin: 0 0 32px;
+  }
+
+  .already {
+    border-top: 0.5px solid #2a2a2a;
+    padding-top: 24px;
+  }
+
+  .already-label {
+    font-size: 11px;
+    color: #6a6a6a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    margin: 0 0 16px;
+  }
+
+  .feature-link {
+    font-size: 17px;
+    color: #d4a574;
+    border-bottom: 0.5px solid #d4a574;
+    padding-bottom: 1px;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+
+  .feature-link:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 24px;
+    }
+  }
+</style>

@@ -1,0 +1,467 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+const markers = [
+  { id: 'y2004', label: '2004' },
+  { id: 'y2006', label: '2006' },
+  { id: 'y2007', label: '2007' },
+  { id: 'y2010', label: '2010' },
+  { id: 'y2013', label: '2013' },
+  { id: 'y2015', label: '2015' },
+  { id: 'y2016', label: '2016' },
+  { id: 'y2018', label: '2018' },
+  { id: 'y2020', label: '2020' },
+  { id: 'y2024', label: '2024' },
+  { id: 'ynow', label: 'Now' },
+];
+---
+
+<BaseLayout title="Roots — Niruktham" description="How a twenty-year accidental career across customer service, RCA, and IT landed on ServiceNow. The long version.">
+  <SiteHeader />
+  <main class="roots-page">
+    <div class="roots-inner">
+      <header class="roots-header">
+        <a href="/" class="back-link">&larr; Back to home</a>
+        <h1>Roots</h1>
+      </header>
+
+      <div class="roots-grid">
+        <aside class="timeline" aria-label="Timeline">
+          <ol class="timeline-list">
+            {markers.map((m) => (
+              <li class="timeline-item" data-marker={m.id}>
+                <a href={`#${m.id}`} class="timeline-link">{m.label}</a>
+              </li>
+            ))}
+          </ol>
+        </aside>
+
+        <article class="prose">
+          <div class="intro-wrap">
+            <div class="intro-prose">
+              <section class="prose-section">
+                <h2>The name</h2>
+                <p>Niruktham comes from Yaska's Nirukta — the oldest surviving work of Sanskrit etymology, written somewhere around the 6th century BCE. The whole discipline is built on a single instinct: that to understand a word, you have to find its root.</p>
+                <p>That instinct turned out to describe how I work. Most of what I do for a living — root cause analysis, solution architecture, untangling a client's process before touching a line of code — is the same move Yaska was making with words, in a different domain. The name was the closest thing I could find to an honest label.</p>
+              </section>
+
+              <section class="prose-section">
+                <h2>How the work found me</h2>
+                <p>I didn't plan a career in ServiceNow. Almost nothing in the timeline below was planned. The shape of it is mostly doors that opened and a few people who held them open longer than they had to.</p>
+              </section>
+            </div>
+            <aside class="photo-col">
+              <img
+                src="/images/varun-roots.jpg"
+                alt="Varun Sareen"
+                class="hero-photo"
+                width="800"
+                height="1066"
+                loading="eager"
+                decoding="async"
+              />
+            </aside>
+          </div>
+
+          <section class="prose-section" id="y2004">
+            <span class="inline-year">2004</span>
+            <h2>2004 — Delhi</h2>
+            <p>First job. Twenty years old, doing a B.Com (Hons) through Delhi University correspondence in the mornings and inbound customer service for Circuit City on the night shift at Teletech. Promoted to team lead before leaving. Got flown to Circuit City's US headquarters in 2005 for a month — training, go-live support, knowledge transfer. Most twenty-one-year-old call centre agents in Delhi in 2005 didn't get on a plane to America. I'm still not entirely sure why I did.</p>
+            <p>What stuck: how to stay calm when the person on the other end isn't. A skill that still earns its keep in discovery workshops twenty years later.</p>
+          </section>
+
+          <section class="prose-section" id="y2006">
+            <span class="inline-year">2006</span>
+            <h2>2006 — Dell, accidentally technical</h2>
+            <p>Circuit City pulled their outsourcing contract from Teletech and Dell was the next thing. Not a plan — just the next door.</p>
+            <p>Eighteen months troubleshooting Dell hardware: monitors, laptops, desktops, printers. First time I'd taken a computer apart and put it back together. Last six months as a Customer Excellence Coach — call quality, monitoring, the awkward feedback conversations that nobody enjoys.</p>
+            <p>Two firsts hidden inside one accidental job: first time the product was a physical thing, and first time being paid to make other people better at their work instead of just doing the work myself. Neither looked important at the time. Both turned out to matter.</p>
+            <p>Careers are mostly built out of accidents you made something of.</p>
+          </section>
+
+          <section class="prose-section" id="y2007">
+            <span class="inline-year">2007</span>
+            <h2>2007 — CSC, the door into IT</h2>
+            <p>The way into information technology properly. Problem Management was the role on offer, and root-causing things was already how my mind worked — so the role and the person fit before either knew it.</p>
+            <p>Three years of RCA across enterprise clients. ITIL V3 Foundation completed somewhere in the middle, the first formal exposure to the framework that every ServiceNow ITSM implementation later sits on. The first place the recognition started arriving unprompted — Motorola EMEA top performer, SDM Award Trophy, customer excellence nomination, highest CSAT in the team.</p>
+            <p>In hindsight, this is where the later ServiceNow career became inevitable. ITIL is the language ITSM is written in, and root cause is the instinct every good architect runs on. Niruktham, in retrospect, started here.</p>
+          </section>
+
+          <section class="prose-section" id="y2010">
+            <span class="inline-year">2010</span>
+            <h2>2010 — Unisys, and a man named Paer</h2>
+            <p>Joined Unisys India as a Problem Lead, on BMC Remedy. Three years of major incident RCAs across EMEA and US clients. The last pre-ServiceNow chapter, though I didn't know that yet.</p>
+
+            <div class="prose-subsection" id="y2013">
+              <span class="inline-year">2013</span>
+              <p>In 2013, Unisys started rolling out ServiceNow internally. <a href="https://www.linkedin.com/in/paerjohansson/" target="_blank" rel="noopener">Paer Johansson</a> — a manager I'd worked alongside but didn't report to — tapped me on the shoulder and pulled me into his ServiceNow operations team. I didn't go looking for ServiceNow. ServiceNow arrived, and Paer decided I belonged near it.</p>
+            </div>
+
+            <div class="prose-subsection" id="y2015">
+              <span class="inline-year">2015</span>
+              <p>Two years later he advised me to get hands-on. I started shadowing the consulting team in parallel with the ops role, then crossed over fully into delivery in 2015 — on the BMC-to-ServiceNow migration project for over a hundred Unisys clients across EMEA and the Americas. Core development, properly, for the first time.</p>
+            </div>
+
+            <div class="prose-subsection" id="y2016">
+              <span class="inline-year">2016</span>
+              <p>In 2016 Paer wanted to start a ServiceNow consulting team in the UK and offered me a seat. I moved to London. A year of solution consulting and hands-on development for UK clients. Then the visa wouldn't extend and I had to go home.</p>
+            </div>
+
+            <div class="prose-subsection" id="y2018">
+              <span class="inline-year">2018</span>
+              <p>That was the low point of the decade. Paer told me to hold on, that something else would open up. He was right — Unisys shut down their UK ServiceNow practice and moved the competency to Germany. In December 2018 I landed in Frankfurt.</p>
+              <p>The work side was a soft landing because the people were familiar Unisys faces. The language side wasn't, and still isn't — German started at zero, has reached A1 since, and remains a live piece of work.</p>
+              <p>The Frankfurt chapter at Unisys was one major client: a German manufacturing group with twenty-three business units. Two-phase greenfield ITSM, two version upgrades, Performance Analytics across a hundred-plus SLAs, and a set of unusually complicated SLA designs. An offshore developer team in India that I led. First time I was responsible not just for what got done but for what got built. That's the implicit definition of an architect, and that's where the title started fitting.</p>
+              <p>Paer was still at Unisys when I left for NTT in 2020. We stay in touch occasionally on LinkedIn now — the kind of contact that doesn't need maintenance because the debt is already understood.</p>
+            </div>
+          </section>
+
+          <section class="prose-section" id="y2020">
+            <span class="inline-year">2020</span>
+            <h2>2020 — NTT Data, the architect years</h2>
+            <p>Better role, ~1.5x salary, three and a half years.</p>
+            <p>Solution architect work and pre-sales work in parallel — a German automotive OEM (CSM, surveys, CTI integration, LDAP), a refractory industry client (catalog, service portal, SAML SSO, upgrades), a media conglomerate (security incident response, risk and compliance proof of concept), and a steady drumbeat of RFPs and prospect demos as the IRM specialism deepened.</p>
+            <p>IRM wasn't a plan. It arrived through a pre-sales engagement and I decided to make it mine — the Risk & Compliance Fundamentals course and the Implementation Specialist certification followed the work, not the other way around. By 2022 I was leading NTT's IRM hub: work packages, rough-order-of-magnitude estimates, GRC sales collateral, the entire implementation sequence slide every IRM consultant in the practice ended up using.</p>
+            <p>The architect work was the half I enjoyed. The pre-sales work was the half that paid for the architect work. Knowing which side of that trade you're on tells you a lot about what you'll do next.</p>
+            <p>NTT and I parted ways in late 2023, partly because the German-speaking projects were where the demand was and my German wasn't yet.</p>
+          </section>
+
+          <section class="prose-section" id="y2024">
+            <span class="inline-year">2024</span>
+            <h2>2024 — SOLVVision, and the work fits</h2>
+            <p>I was already looking by then. SOLVVision said yes in early 2024. Joined as a Technical Expert — the senior individual-contributor rung on their ladder, one step below the management track. Deliberately so; I went there to build, not to manage.</p>
+            <p>Twenty months in, it's the chapter that re-rooted me. Back-to-back clients across more industries than I'd touched in any other single role — automotive, manufacturing, construction, healthcare, banking, automation, ceramics, logistics. Back to development work properly. Mentoring people when they ask. Building side projects in the quieter weeks — including this site.</p>
+            <p>NTT taught me what I didn't want my work to look like. SOLVVision is what it looks like when the work fits.</p>
+          </section>
+
+          <section class="prose-section" id="ynow">
+            <span class="inline-year">Now</span>
+            <h2>Now</h2>
+            <p>Frankfurt. Eleven-plus years on the ServiceNow platform. Six current ServiceNow certifications and one ITIL Expert. Building niruktham.com and the side projects that live here in the spaces between client work.</p>
+            <p>The full client-by-client history lives on the <a href="/about/work/">Work Experience page</a> — anonymised by industry, structured properly, and the place I'd point you to before a discovery call.</p>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</BaseLayout>
+
+<script>
+  // Scroll-based year highlight: on every scroll, pick the section whose
+  // heading has most recently entered the upper 60% of the viewport.
+  // Highlight its sidebar marker.
+  const markerIds = [
+    'y2004', 'y2006', 'y2007', 'y2010', 'y2013',
+    'y2015', 'y2016', 'y2018', 'y2020', 'y2024', 'ynow',
+  ];
+
+  const sections = markerIds
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+
+  const markerFor = (id: string) =>
+    document.querySelector<HTMLElement>(`.timeline-item[data-marker="${id}"]`);
+
+  let currentActive: string | null = null;
+  const setActive = (id: string | null) => {
+    if (id === currentActive) return;
+    if (currentActive) {
+      markerFor(currentActive)?.classList.remove('timeline-item-active');
+    }
+    if (id) {
+      markerFor(id)?.classList.add('timeline-item-active');
+    }
+    currentActive = id;
+  };
+
+  const nearBottom = () =>
+    window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100;
+
+  const pickActive = () => {
+    // Near-bottom override: the final "Now" section is short enough that
+    // its top may never cross the threshold, so force it when the page
+    // is scrolled to the bottom.
+    if (nearBottom()) {
+      setActive('ynow');
+      return;
+    }
+
+    // Threshold is 60% of the viewport height — a heading becomes active
+    // as soon as it enters the upper 60% of the screen. Recomputed per
+    // tick so resizes are handled automatically.
+    const THRESHOLD = window.innerHeight * 0.6;
+
+    // Pick the section with the largest top < THRESHOLD — i.e. the
+    // heading that most recently crossed the threshold line from below.
+    let bestId: string | null = sections[0]?.id ?? null;
+    let bestTop = -Infinity;
+    for (const s of sections) {
+      const top = s.getBoundingClientRect().top;
+      if (top < THRESHOLD && top > bestTop) {
+        bestTop = top;
+        bestId = s.id;
+      }
+    }
+    setActive(bestId);
+  };
+
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      pickActive();
+      ticking = false;
+    });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+
+  // Initial pick for page load (handles deep-linked anchors too).
+  pickActive();
+</script>
+
+<style is:global>
+  /* Hide the Devanagari script in the brand mark on the Roots page only */
+  body:has(.roots-page) .brand-dev {
+    display: none;
+  }
+</style>
+
+<style>
+  .roots-page {
+    width: 100%;
+    padding: 0 0 80px;
+  }
+
+  .roots-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 44px;
+  }
+
+  .roots-header {
+    max-width: 820px;
+    margin: 0 0 48px;
+  }
+
+  .back-link {
+    font-size: 14px;
+    color: #a0a0a0;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+
+  .back-link:hover {
+    color: #d4a574;
+  }
+
+  h1 {
+    font-size: 44px;
+    font-weight: 500;
+    color: #fafafa;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .roots-grid {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* Timeline column — desktop */
+  .timeline {
+    position: sticky;
+    top: 32px;
+    align-self: start;
+  }
+
+  .timeline-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    border-left: 0.5px solid #2a2a2a;
+    padding-left: 14px;
+  }
+
+  .timeline-item {
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .timeline-link {
+    font-size: inherit;
+    color: #6a6a6a;
+    text-decoration: none;
+    transition: color 0.2s ease, font-weight 0.2s ease;
+  }
+
+  .timeline-link:hover {
+    color: #fafafa;
+  }
+
+  .timeline-item-active .timeline-link {
+    color: #d4a574;
+    font-weight: 500;
+  }
+
+  .timeline-item-active .timeline-link:hover {
+    color: #e8bd8b;
+  }
+
+  /* Prose column */
+  .prose {
+    min-width: 0;
+  }
+
+  .prose > .prose-section {
+    max-width: 680px;
+  }
+
+  .prose-section {
+    margin-bottom: 48px;
+    scroll-margin-top: 32px;
+  }
+
+  .prose-subsection {
+    margin-top: 16px;
+    scroll-margin-top: 32px;
+  }
+
+  /* Intro wrapper: prose + sticky photo, three-column page effect.
+     The photo is a child of this wrapper only, so once the wrapper
+     ends (at the start of the year sections), the sticky element
+     naturally drops out of the flow. */
+  .intro-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 680px) 260px;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+
+  .intro-prose {
+    min-width: 0;
+  }
+
+  .intro-prose .prose-section {
+    max-width: none;
+  }
+
+  .photo-col {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .hero-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: unset;
+    object-fit: contain;
+    border-radius: 0.75rem;
+    border: 1px solid #2a2a2a;
+  }
+
+  .prose h2 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #fafafa;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+
+  .prose p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #cfcfcf;
+    margin: 0 0 16px;
+  }
+
+  .prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prose a {
+    color: #d4a574;
+    text-decoration: none;
+    border-bottom: 0.5px solid rgba(212, 165, 116, 0.5);
+    transition: border-color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .prose a:hover {
+    border-bottom-color: #d4a574;
+    opacity: 0.9;
+  }
+
+  /* Inline year markers — hidden on desktop, shown on mobile */
+  .inline-year {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .roots-inner {
+      padding: 0 24px;
+    }
+
+    h1 {
+      font-size: 34px;
+    }
+
+    .roots-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+    }
+
+    .timeline {
+      display: none;
+    }
+
+    .intro-wrap {
+      display: block;
+      margin-bottom: 0;
+    }
+
+    .photo-col {
+      display: none;
+    }
+
+    .prose h2 {
+      font-size: 20px;
+    }
+
+    .prose p {
+      font-size: 16px;
+    }
+
+    .inline-year {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6a6a6a;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 0.5px solid #2a2a2a;
+      min-width: 48px;
+    }
+
+    .prose-subsection {
+      margin-top: 28px;
+    }
+  }
+</style>

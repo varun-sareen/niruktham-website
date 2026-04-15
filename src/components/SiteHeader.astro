@@ -4,7 +4,6 @@ const pathname = Astro.url.pathname;
 const navItems = [
   { href: '/posts/', label: 'Blog', muted: false },
   { href: '/coming-soon/', label: 'Solutions', muted: true },
-  { href: '/coming-soon/', label: 'About', muted: true },
 ];
 
 const isActive = (href: string) => {
@@ -13,6 +12,8 @@ const isActive = (href: string) => {
   }
   return pathname === href || pathname === href.replace(/\/$/, '');
 };
+
+const aboutActive = pathname.startsWith('/about');
 ---
 
 <header class="site-header">
@@ -45,6 +46,18 @@ const isActive = (href: string) => {
           <a href={item.href} class={classes} aria-current={active ? 'page' : undefined}>{item.label}</a>
         );
       })}
+      <div class={`nav-item has-dropdown${aboutActive ? ' nav-item-active' : ''}`}>
+        <a
+          href="/about/roots/"
+          class={`nav-link nav-link-trigger${aboutActive ? ' nav-link-active' : ''}`}
+          aria-haspopup="true"
+          aria-current={aboutActive ? 'page' : undefined}
+        >About <span class="caret" aria-hidden="true">▾</span></a>
+        <div class="nav-dropdown" role="menu">
+          <a href="/about/roots/" class="nav-dropdown-link" role="menuitem">Roots</a>
+          <a href="/about/work/" class="nav-dropdown-link nav-dropdown-link-muted" role="menuitem">Work Experience</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
@@ -122,6 +135,91 @@ const isActive = (href: string) => {
     color: #a0a0a0;
   }
 
+  /* Dropdown */
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link-trigger {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .caret {
+    font-size: 11px;
+    line-height: 1;
+    color: inherit;
+    opacity: 0.8;
+    transition: transform 0.15s ease;
+  }
+
+  .nav-item:hover .caret,
+  .nav-item:focus-within .caret {
+    transform: translateY(1px);
+  }
+
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    min-width: 180px;
+    background: #0f0f0f;
+    border: 0.5px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    z-index: 10;
+  }
+
+  /* Invisible bridge so the dropdown doesn't close when moving cursor from trigger to menu */
+  .nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+  }
+
+  .nav-item:hover .nav-dropdown,
+  .nav-item:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-dropdown-link {
+    display: block;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .nav-dropdown-link:hover,
+  .nav-dropdown-link:focus-visible {
+    color: #fafafa;
+    background: #171717;
+  }
+
+  .nav-dropdown-link-muted {
+    color: #6a6a6a;
+  }
+
+  .nav-dropdown-link-muted:hover,
+  .nav-dropdown-link-muted:focus-visible {
+    color: #a0a0a0;
+  }
+
   @media (max-width: 768px) {
     .header-inner {
       padding: 0 24px;
@@ -133,6 +231,11 @@ const isActive = (href: string) => {
 
     .nav-link {
       font-size: 13px;
+    }
+
+    .nav-dropdown {
+      right: 0;
+      min-width: 160px;
     }
   }
 </style>
