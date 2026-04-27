@@ -2,40 +2,422 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import EngagementList, { type Engagement } from '../../components/EngagementList.astro';
+
+const stats = [
+  { value: '22y 2m', label: 'Total experience', accent: true },
+  { value: '12y 7m', label: 'On ServiceNow' },
+  { value: '21', label: 'ServiceNow clients' },
+  { value: '3', label: 'ServiceNow employers' },
+  { value: '10', label: 'ServiceNow certifications' },
+];
+
+const credlyUrl = 'https://www.credly.com/users/varun-sareen.efd98d82';
+
+const certifications = [
+  { src: '/badges/servicenow-certified-system-administrator-csa.png', alt: 'ServiceNow Certified System Administrator (CSA)' },
+  { src: '/badges/certified-application-developer-cad.png', alt: 'ServiceNow Certified Application Developer (CAD)' },
+  { src: '/badges/certified-implementation-specialist-it-service-mana.png', alt: 'ServiceNow Certified Implementation Specialist — IT Service Management' },
+  { src: '/badges/certified-implementation-specialist-security-incide.png', alt: 'ServiceNow Certified Implementation Specialist — Security Incident Response' },
+  { src: '/badges/certified-implementation-specialist-risk-and-compli.png', alt: 'ServiceNow Certified Implementation Specialist — Risk and Compliance' },
+  { src: '/badges/certified-implementation-specialist-service-provide.png', alt: 'ServiceNow Certified Implementation Specialist — Service Provider' },
+  { src: '/badges/certified-implementation-specialist-platform-analyt.png', alt: 'ServiceNow Certified Implementation Specialist — Platform Analytics' },
+  { src: '/badges/micro-certification-flow-designer.png', alt: 'ServiceNow Micro-Certification — Flow Designer' },
+  { src: '/badges/micro-certification-configure-the-cmdb.png', alt: 'ServiceNow Micro-Certification — Configure the CMDB' },
+  { src: '/badges/micro-certification-platform-analytics.png', alt: 'ServiceNow Micro-Certification — Platform Analytics' },
+];
+
+const solvvisionFeatured: Engagement[] = [
+  {
+    id: 'solvvision-automotive-parts-distribution',
+    title: 'Automotive parts distribution',
+    pills: ['ITSM', 'Core Platform', 'Upgrades'],
+    role: 'Lead Developer + Operations Manager',
+    period: '03.2024 — 12.2025',
+    modules: 'ITSM, Core Platform, Upgrades',
+    description: "A multi-year managed-service engagement for a European automotive parts distributor, held as a dual-role position. On the development side: designed and delivered a Dynatrace-to-ServiceNow inbound email-action integration for incident management, migrated the client away from DeepL onto their in-house LLM for dynamic translation, and implemented SailPoint user provisioning alongside PingID as the SSO provider. Also led multiple platform upgrades end-to-end across Dev, UAT, and Production, and sustained ITSM development across the client's enhancement backlog throughout the engagement.",
+  },
+  {
+    id: 'solvvision-commercial-real-estate-bank',
+    title: 'Commercial real-estate bank',
+    pills: ['SIR', 'Threat Intelligence', 'Scoped app'],
+    role: 'Developer',
+    period: '05.2025 — present',
+    modules: 'Security Incident Response, Threat Intelligence, Scoped app',
+    description: "A Security Incident Response and Threat Intelligence engagement for a European commercial real-estate bank. Core deliverable: a bi-directional integration between ServiceNow Security Incidents and Quointelligence Mercury, handling both directions of the threat-intelligence exchange. Also built an IP Geolocation enrichment scoped app proactively — imported security incidents are automatically enriched with geolocation metadata before triage. Ongoing SIR customisation work continues across the client's Threat Intelligence lifecycle.",
+  },
+  {
+    id: 'solvvision-home-appliances-manufacturing',
+    title: 'Home appliances manufacturing',
+    pills: ['CSM', 'Performance Analytics'],
+    role: 'Developer',
+    period: '06.2024 — present',
+    modules: 'Customer Service Management, Performance Analytics',
+    description: "An ongoing CSM and Performance Analytics engagement for a global home appliances manufacturer. Built SAP middleware transform flows for account, contact, and consumer data arriving into ServiceNow via a scripted REST API, and configured the Genesys-to-ServiceNow CTI plugin integration to bridge voice channels with the CSM console. Sustained CSM and ITSM story development continues across the engagement backlog.",
+  },
+  {
+    id: 'solvvision-pharma-industrial-real-estate',
+    title: 'Pharma industrial real-estate',
+    pills: ['IRM', 'Risk & Compliance'],
+    role: 'Lead Developer',
+    period: '02.2025 — 06.2025',
+    modules: 'Integrated Risk Management, Risk & Compliance',
+    description: "A Risk & Compliance implementation for a pharma-industrial real-estate client. Imported foundation data across Control, Control Objectives, Entity, Entity Type, and Risk Statement tables, then developed a fully custom Advanced Risk Assessment — including scripted quantitative scoring logic for both Inherent and Target ratings across the client's risk portfolio.",
+  },
+  {
+    id: 'solvvision-logistics',
+    title: 'Logistics',
+    pills: ['ITSM', 'Xanadu upgrade'],
+    role: 'Lead Developer',
+    period: '10.2024 — 01.2025',
+    modules: 'ITSM, Xanadu upgrade',
+    description: 'Xanadu platform upgrade remediation plus ITSM development for a European logistics client.',
+  },
+  {
+    id: 'solvvision-private-banking',
+    title: 'Private banking',
+    pills: ['ITSM'],
+    role: 'Developer',
+    period: '05.2024 — 07.2024',
+    modules: 'ITSM',
+    description: 'ITSM greenfield implementation for a private bank. Short engagement focused on initial platform setup and core ITSM module delivery.',
+  },
+  {
+    id: 'solvvision-qsr-logistics',
+    title: 'QSR logistics',
+    pills: ['ITSM'],
+    role: 'Lead Developer',
+    period: '02.2026 — 04.2026',
+    modules: 'ITSM',
+    description: 'ITSM implementation for a quick-service-restaurant logistics client.',
+  },
+];
+
+const nttdataFeatured: Engagement[] = [
+  {
+    id: 'nttdata-automotive-oem',
+    title: 'Automotive OEM',
+    pills: ['CSM', 'CTI Integration', 'Survey', 'LDAP'],
+    role: 'Platform & Integration Architect',
+    period: '01.2021 — 07.2022',
+    modules: 'Customer Service Management, CTI Integration, Survey Management, LDAP Integration',
+    description: 'A major migration programme for a European automotive OEM — from BMC Remedy onto ServiceNow. Led the migration of Customer Service Management and the CSM Workspace, and the Survey Management migration from the legacy Formgen/Pilotdata platform via JDBC and a MID server. Also delivered the InIn-CIC CTI integration, bridging call data and the staging database into ServiceNow, and designed the LDAP integration across four patterns: user population, authentication, scheduled refresh, and LDAP listener.',
+  },
+  {
+    id: 'nttdata-media-conglomerate',
+    title: 'Media conglomerate',
+    pills: ['SIR', 'Risk & Compliance'],
+    role: 'Platform Architect / Project Manager',
+    period: '04.2022 — 07.2022',
+    modules: 'Security Incident Response, Risk & Compliance',
+    description: "A compressed dual-track engagement for a media conglomerate: a full Security Incident Response implementation alongside a Risk & Compliance proof-of-concept. Migrated the client's custom-table threat-intelligence model onto native SIR tables, and implemented complex scoring logic across Threat Resilience %, Damage Impact %, Threat Risk Scenario Probability Ratio, and Threat Effect per Risk Cluster.",
+  },
+  {
+    id: 'nttdata-refractory-materials',
+    title: 'Refractory materials',
+    pills: ['ITSM', 'Service Catalog', 'Service Portal', 'SSO', 'Upgrade'],
+    role: 'Platform Architect / Project Manager',
+    period: '11.2020 — 08.2022',
+    modules: 'ITSM, Service Catalog, Service Portal, SSO, Upgrade',
+    description: 'A long-running ITSM modernisation programme for a refractory materials client. Led a three-phase Service Catalog Management implementation — 100+ catalog items, workflows, SLAs, and a category restructure. Delivered a Service Portal build, a SAML 2.0 SSO integration with Azure AD, and a Paris-to-Rome platform upgrade sequenced across Dev, UAT, and Production.',
+  },
+  {
+    id: 'nttdata-internal',
+    title: 'NTT Data internal',
+    pills: ['ITSM', 'Core Platform', 'Domain Separation'],
+    role: 'Platform Architect',
+    period: '09.2020 — 10.2020',
+    modules: 'ITSM, Core Platform, Domain Separation',
+    description: "Activated domain separation on NTT Data's internal service-providing instance. Trained the development team on domain-separation concepts and led the implementation through to a successful go-live.",
+  },
+];
+
+const unisysFeatured: Engagement[] = [
+  {
+    id: 'unisys-manufacturing-group-dach',
+    title: 'Manufacturing group (DACH)',
+    pills: ['ITSM', 'Core Platform', 'Performance Analytics'],
+    role: 'Senior Consultant',
+    period: '06.2018 — 06.2020',
+    modules: 'ITSM, Core Platform, Performance Analytics',
+    description: 'A two-phased ServiceNow single-tenant ITSM greenfield implementation for a DACH manufacturing group — four business units and 23 companies under them. Designed and delivered a Service Catalog and Technical Catalog of 70+ RITMs with workflows and orchestration, led a three-phase Performance Analytics rollout across 100+ SLAs and KPIs, and designed a custom SLM application to track third-party vendor SLAs. Led two upgrades (Kingston to London, then London to Madrid), and led and mentored the India development team throughout. This engagement also relocated me from Hyderabad to Frankfurt.',
+  },
+  {
+    id: 'unisys-multi-client-migration',
+    title: 'Unisys multi-client migration (EMEA + USA)',
+    pills: ['ITSM', 'Core Platform'],
+    role: 'Consultant',
+    period: '10.2015 — 05.2018',
+    modules: 'ITSM, Core Platform',
+    description: 'Migrated 100+ Unisys clients from BMC ITSM Remedy 8.0 onto a multi-domain ServiceNow instance. Led requirement gathering with SDMs and clients; cost and solution estimation; and BMC-vs-ServiceNow cost-benefit analyses. Hands-on development spanned inbound actions, notifications, catalog items, SLAs/OLAs, business rules, client scripts, workflows, server/client scripting, and foundation data via transform maps. Built test cases across unit, functional, UAT, integration, and monkey testing tiers.',
+  },
+];
 ---
 
-<BaseLayout title="Work Experience — Niruktham" description="Client-by-client ServiceNow work history. Under construction.">
+<BaseLayout
+  title="Work Experience — Niruktham"
+  description="Client-by-client ServiceNow work history. Anonymised by industry. Six employers across four countries."
+>
   <SiteHeader />
-  <div class="page-wrap">
-    <main class="container">
-      <a href="/about/roots/" class="back-link">&larr; Back to Roots</a>
-      <h1>Under construction</h1>
-      <p class="lede">The full client-by-client work history is being written up properly — anonymised by industry and structured to be useful before a discovery call. Check back soon.</p>
+  <main class="work-page">
+    <div class="work-layout">
+      <header class="work-header">
+        <a href="/" class="back-link">&larr; Back to home</a>
+        <p class="kicker">Branches</p>
+        <h1>Where the work has happened</h1>
+        <p class="subhead">Anonymised by industry. Six employers across four countries.</p>
+      </header>
 
-      <section class="already">
-        <p class="already-label">What's already here</p>
-        <a href="/about/roots/" class="feature-link">About / Roots &rarr;</a>
-        <a href="/posts/" class="feature-link">Blog &rarr;</a>
-        <a href="https://www.linkedin.com/in/vasareen/" target="_blank" rel="noopener noreferrer" class="feature-link">About me on LinkedIn &#8599;</a>
+      <section class="stats" aria-label="Career summary">
+        <ul class="stats-list">
+          {stats.map((s) => (
+            <li class={`stats-cell${s.accent ? ' stats-cell-accent' : ''}`}>
+              <span class="stats-value">{s.value}</span>
+              <span class="stats-label">{s.label}</span>
+            </li>
+          ))}
+        </ul>
       </section>
-    </main>
-  </div>
+
+      <aside class="certifications" aria-label="Certifications">
+        <h2 class="certifications-heading">Certifications</h2>
+        <div class="certifications-grid">
+          {certifications.map((c) => (
+            <a href={credlyUrl} target="_blank" rel="noopener noreferrer" class="cert-link">
+              <img src={c.src} alt={c.alt} width="140" height="140" loading="lazy" decoding="async" />
+            </a>
+          ))}
+        </div>
+      </aside>
+
+      <section class="employers" aria-label="Employers">
+        <article class="employer" id="solvvision">
+          <header class="employer-header">
+            <div class="employer-info">
+              <h2 class="employer-name">
+                <span class="employer-dot employer-dot-current" aria-hidden="true"></span>
+                <span>SOLVVision AG</span>
+              </h2>
+              <p class="employer-location">Frankfurt</p>
+              <p class="employer-role">ServiceNow Technical Expert</p>
+            </div>
+            <div class="employer-dates">
+              <p class="employer-range">03.2024 — present</p>
+              <p class="employer-duration">2y 1m</p>
+            </div>
+          </header>
+          <hr class="employer-divider" />
+          <p class="employer-intro">14 clients across 11 industries (DE/EU) — ITSM, CSM, Security Operations, Integrated Risk Management, Performance Analytics, Core Platform upgrades.</p>
+
+          <section class="engagement-group">
+            <h3 class="engagement-group-heading">Featured engagements across multiple industries</h3>
+            <EngagementList engagements={solvvisionFeatured} />
+          </section>
+
+          <section class="prose-group">
+            <h3 class="engagement-group-heading">Managed-service engagements</h3>
+            <p class="prose-paragraph">Served as ServiceNow Operations Manager for the Automotive parts distribution managed-service client. The role covered SLA and budget reporting, monthly service reviews, backlog monitoring across incidents, service requests and enhancements, story management (enhancement intake, requirements engineering, user story authoring, sprint planning), release coordination across major releases and minor patches, and resource allocation.</p>
+            <p class="prose-paragraph">Additional managed-service support for psychiatric healthcare and IT integration provider clients, covering ServiceNow incident and performance resolution.</p>
+          </section>
+
+          <section class="prose-group">
+            <h3 class="engagement-group-heading">Ad-hoc engagements</h3>
+            <p class="prose-paragraph">Short ITSM customisation engagements across refractory materials, industrial automation, social welfare, automotive components, and eldercare sectors.</p>
+          </section>
+
+          <section class="prose-group">
+            <h3 class="engagement-group-heading">Internal company work &amp; development</h3>
+            <ul class="bullet-list">
+              <li>Designed and built a scoped performance metrics application capturing five performance metrics across the SOLVVision managed-service client portfolio.</li>
+              <li>Member of a small team of lead developers investigating the introduction of Claude Code, MCP, and Visio into the firm's day-to-day development workflow.</li>
+            </ul>
+          </section>
+        </article>
+
+        <article class="employer" id="nttdata">
+          <header class="employer-header">
+            <div class="employer-info">
+              <h2 class="employer-name">
+                <span class="employer-dot" aria-hidden="true"></span>
+                <span>NTT Data Deutschland GmbH</span>
+              </h2>
+              <p class="employer-location">Frankfurt</p>
+              <p class="employer-role">Managing Technical Consultant — IRM Hub Lead &amp; Pre-Sales Solution Architect</p>
+            </div>
+            <div class="employer-dates">
+              <p class="employer-range">08.2020 — 02.2024</p>
+              <p class="employer-duration">3y 6m</p>
+            </div>
+          </header>
+          <hr class="employer-divider" />
+          <p class="employer-intro">Four enterprise delivery engagements plus the build-out of NTT Data DACH's IRM go-to-market practice. Industries served: automotive, media, refractory materials, and internal.</p>
+
+          <section class="engagement-group">
+            <h3 class="engagement-group-heading">Featured engagements across multiple industries</h3>
+            <EngagementList engagements={nttdataFeatured} />
+          </section>
+
+          <section class="prose-group">
+            <h3 class="engagement-group-heading">IRM practice &amp; pre-sales build-out</h3>
+            <p class="prose-paragraph">From July 2022 to February 2024, led the IRM Hub across NTT Data DACH. Authored standard work packages covering the full GRC scope — IRM, Privacy Management, Business Continuity, Vendor Risk, Regulatory Change, and Operational Resilience. Built the NTT IRM sales collateral library: pitch deck, one-pager, workshop materials, and implementation sequence. Ran IRM demos for RFP use cases. Designed and ported an Asset Classification model from RSA Archer onto the self-maintained NTT IRM demo instance, and drove IRM and ITSM RFP responses end-to-end — work packages, rough-order-of-magnitude pricing, solution architecture, and RFI scoping.</p>
+          </section>
+        </article>
+
+        <article class="employer" id="unisys">
+          <header class="employer-header">
+            <div class="employer-info">
+              <h2 class="employer-name">
+                <span class="employer-dot" aria-hidden="true"></span>
+                <span>Unisys</span>
+              </h2>
+              <p class="employer-location">India (7y 7m) · UK (1y) · Germany (1y 7m)</p>
+              <p class="employer-role">Senior ServiceNow Consultant</p>
+            </div>
+            <div class="employer-dates">
+              <p class="employer-range">05.2010 — 07.2020</p>
+              <p class="employer-duration">10y 2m</p>
+            </div>
+          </header>
+          <hr class="employer-divider" />
+          <p class="employer-intro">Ten years at Unisys across three countries, progressing from BMC Remedy Problem Lead to ServiceNow Operations Manager, and then Consultant to Senior Consultant. Client portfolio spanned 100+ Unisys managed-service clients across EMEA and the USA.</p>
+
+          <section class="engagement-group">
+            <h3 class="engagement-group-heading">Featured engagements across multiple industries</h3>
+            <EngagementList engagements={unisysFeatured} />
+          </section>
+
+          <section class="prose-group">
+            <h3 class="engagement-group-heading">Earlier work at Unisys</h3>
+            <p class="prose-paragraph"><strong class="prose-strong">ServiceNow Operations Manager</strong> · 09.2013 — 09.2015. Operational owner of a six-application portfolio, primarily ServiceNow. Worked with SDMs and account teams across EMEA/USA clients on escalation management, CAB, RCA, release, DR, and continuous service improvement. Defined reporting for internal portfolio OLAs. This role was my entry point into ServiceNow.</p>
+            <p class="prose-paragraph"><strong class="prose-strong">Problem Lead, BMC Remedy ITSM</strong> · 05.2010 — 09.2013. Multi-client problem management across EMEA clients on BMC Remedy ITSM 7.4 → 8.0.</p>
+          </section>
+        </article>
+
+        <article class="employer" id="csc">
+          <header class="employer-header">
+            <div class="employer-info">
+              <h2 class="employer-name">
+                <span class="employer-dot" aria-hidden="true"></span>
+                <span>CSC (now DXC Technology)</span>
+              </h2>
+              <p class="employer-location">India</p>
+              <p class="employer-role">Problem Manager — BMC Remedy ITSM</p>
+            </div>
+            <div class="employer-dates">
+              <p class="employer-range">09.2007 — 04.2010</p>
+              <p class="employer-duration">2y 7m</p>
+            </div>
+          </header>
+          <hr class="employer-divider" />
+          <p class="prose-paragraph">Multi-client problem management across EMEA on BMC Remedy ITSM 7.x. Final role before moving to Unisys.</p>
+        </article>
+
+        <article class="employer" id="dell">
+          <header class="employer-header">
+            <div class="employer-info">
+              <h2 class="employer-name">
+                <span class="employer-dot" aria-hidden="true"></span>
+                <span>Dell Technologies</span>
+              </h2>
+              <p class="employer-location">India</p>
+              <p class="employer-role">Senior Technical Support</p>
+            </div>
+            <div class="employer-dates">
+              <p class="employer-range">04.2006 — 09.2007</p>
+              <p class="employer-duration">1y 5m</p>
+            </div>
+          </header>
+          <hr class="employer-divider" />
+          <p class="prose-paragraph">Tier-2 technical support for Dell USA customers across PC, laptop, and printer product lines.</p>
+        </article>
+
+        <article class="employer" id="teletech">
+          <header class="employer-header">
+            <div class="employer-info">
+              <h2 class="employer-name">
+                <span class="employer-dot" aria-hidden="true"></span>
+                <span>Teletech</span>
+              </h2>
+              <p class="employer-location">India / USA</p>
+              <p class="employer-role">Team Lead, Customer Support</p>
+            </div>
+            <div class="employer-dates">
+              <p class="employer-range">02.2004 — 03.2006</p>
+              <p class="employer-duration">2y 1m</p>
+            </div>
+          </header>
+          <hr class="employer-divider" />
+          <p class="prose-paragraph">Call-centre team lead on the Circuit City account. First IT role, bridging customer support into a technical career.</p>
+        </article>
+      </section>
+    </div>
+  </main>
   <SiteFooter />
 </BaseLayout>
 
+<script>
+  const toggles = document.querySelectorAll<HTMLButtonElement>('.engagement-toggle');
+  toggles.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const next = !expanded;
+      btn.setAttribute('aria-expanded', String(next));
+      const targetId = btn.getAttribute('aria-controls');
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (target) {
+        target.hidden = !next;
+      }
+      const icon = btn.querySelector<HTMLElement>('.engagement-toggle-icon');
+      if (icon) {
+        icon.textContent = next ? '−' : '+';
+      }
+    });
+  });
+</script>
+
 <style>
-  .page-wrap {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem 0;
+  .work-page {
+    width: 100%;
+    padding: 0 0 80px;
   }
 
-  .container {
-    max-width: 600px;
+  .work-layout {
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 44px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-template-areas:
+      "header certs"
+      "stats certs"
+      "employers certs";
+    column-gap: 80px;
+    align-items: start;
+  }
+
+  .work-header {
+    grid-area: header;
+    width: 100%;
+    max-width: 880px;
+    justify-self: center;
+    margin: 0 0 56px;
+  }
+
+  .stats {
+    grid-area: stats;
+    width: 100%;
+    justify-self: center;
+  }
+
+  .employers {
+    grid-area: employers;
+    width: 100%;
+    max-width: 880px;
+    justify-self: center;
+  }
+
+  .certifications {
+    grid-area: certs;
   }
 
   .back-link {
@@ -43,60 +425,379 @@ import SiteFooter from '../../components/SiteFooter.astro';
     color: #a0a0a0;
     text-decoration: none;
     display: inline-block;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   .back-link:hover {
     color: #d4a574;
   }
 
+  .kicker {
+    font-size: 11px;
+    font-weight: 500;
+    color: #6a6a6a;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 14px;
+  }
+
   h1 {
-    font-size: 36px;
+    font-size: 44px;
     font-weight: 500;
     color: #fafafa;
     letter-spacing: -0.02em;
     margin: 0 0 16px;
   }
 
-  .lede {
+  .subhead {
     font-size: 17px;
-    line-height: 1.7;
+    line-height: 1.6;
     color: #a0a0a0;
-    margin: 0 0 32px;
+    margin: 0;
   }
 
-  .already {
+  /* Stats strip */
+  .stats {
+    max-width: 880px;
     border-top: 0.5px solid #2a2a2a;
-    padding-top: 24px;
+    border-bottom: 0.5px solid #2a2a2a;
   }
 
-  .already-label {
+  .stats-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .stats-cell {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-left: 0.5px solid #2a2a2a;
+  }
+
+  .stats-cell:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .stats-value {
+    font-size: 32px;
+    font-weight: 500;
+    color: #fafafa;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .stats-cell-accent .stats-value {
+    color: #d4a574;
+  }
+
+  .stats-label {
     font-size: 11px;
+    font-weight: 500;
     color: #6a6a6a;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+
+  /* Tablet — 3 + 2 */
+  @media (max-width: 900px) {
+    .stats-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stats-cell {
+      padding: 20px 16px;
+    }
+
+    .stats-cell:first-child {
+      padding-left: 0;
+    }
+
+    .stats-cell:nth-child(4) {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .stats-cell:nth-child(n+4) {
+      border-top: 0.5px solid #2a2a2a;
+    }
+  }
+
+  /* Employer block */
+  .employers {
+    margin-top: 64px;
+  }
+
+  .employer {
+    max-width: 880px;
+    margin: 0 0 64px;
+    scroll-margin-top: 32px;
+  }
+
+  .employer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 16px;
+  }
+
+  .employer-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .employer-name {
+    font-size: 22px;
     font-weight: 500;
+    color: #fafafa;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .employer-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6a6a6a;
+    flex-shrink: 0;
+  }
+
+  .employer-dot-current {
+    background: #d4a574;
+  }
+
+  .employer-location {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin: 0 0 2px;
+  }
+
+  .employer-role {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin: 0;
+  }
+
+  .employer-dates {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .employer-range {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fafafa;
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 4px;
+  }
+
+  .employer-duration {
+    font-size: 13px;
+    color: #6a6a6a;
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+  }
+
+  .employer-divider {
+    border: none;
+    border-top: 0.5px solid #2a2a2a;
+    margin: 0 0 20px;
+  }
+
+  .employer-intro {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #cfcfcf;
+    margin: 0 0 32px;
+  }
+
+  /* Engagement group + prose group share the same heading + spacing */
+  .engagement-group,
+  .prose-group {
+    margin-bottom: 40px;
+  }
+
+  .engagement-group:last-child,
+  .prose-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .engagement-group-heading {
+    font-size: 13px;
+    font-weight: 500;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 12px;
+  }
+
+  .prose-paragraph {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #cfcfcf;
     margin: 0 0 16px;
   }
 
-  .feature-link {
+  .prose-paragraph:last-child {
+    margin-bottom: 0;
+  }
+
+  .bullet-list {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 0;
+  }
+
+  .bullet-list li {
     font-size: 17px;
-    color: #d4a574;
-    border-bottom: 0.5px solid #d4a574;
-    padding-bottom: 1px;
-    text-decoration: none;
+    line-height: 1.75;
+    color: #cfcfcf;
+    margin: 0 0 8px;
+  }
+
+  .bullet-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .bullet-list li::marker {
+    color: #6a6a6a;
+  }
+
+  .prose-strong {
+    font-weight: 500;
+    color: #fafafa;
+  }
+
+  /* Certifications sidebar */
+  .certifications-heading {
+    font-size: 13px;
+    font-weight: 500;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 12px;
+  }
+
+  .certifications-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .cert-link {
     display: block;
-    margin-bottom: 12px;
-    width: fit-content;
+    width: 170px;
+    transition: transform 200ms ease, filter 200ms ease;
   }
 
-  .feature-link:hover {
-    opacity: 0.85;
+  .cert-link:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
   }
 
+  .cert-link:focus {
+    outline: none;
+  }
+
+  .cert-link:focus-visible {
+    outline: 1px solid #d4a574;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .cert-link img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Below 1180 — sidebar drops below stats, becomes a horizontal grid */
+  @media (max-width: 1180px) {
+    .work-layout {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "stats"
+        "certs"
+        "employers";
+      column-gap: 0;
+    }
+
+    .certifications {
+      margin-top: 64px;
+    }
+
+    .certifications-grid {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      max-width: 880px;
+    }
+
+    .cert-link {
+      width: 100%;
+      max-width: 170px;
+      justify-self: center;
+    }
+  }
+
+  /* Cert grid 5 → 3 (stats 5→3+2 handled in earlier media query) */
+  @media (max-width: 900px) {
+    .certifications-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Phone — stats 1-col, employer header stacks */
   @media (max-width: 768px) {
-    .container {
-      padding: 0 24px;
+    h1 {
+      font-size: 34px;
+    }
+
+    .stats-list {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-cell,
+    .stats-cell:first-child,
+    .stats-cell:nth-child(4) {
+      border-left: none;
+      padding: 18px 0;
+      border-top: 0.5px solid #2a2a2a;
+    }
+
+    .stats-cell:first-child {
+      border-top: none;
+    }
+
+    .stats-cell:nth-child(n+4) {
+      border-top: 0.5px solid #2a2a2a;
+    }
+
+    .employer-header {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .employer-dates {
+      text-align: left;
+    }
+  }
+
+  /* Narrow phone — cert grid 2-col */
+  @media (max-width: 560px) {
+    .certifications-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
